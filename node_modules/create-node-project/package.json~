@@ -1,0 +1,13 @@
+{
+    "name": "create-node-project",
+    "version": "1.0.2",
+    "description": "Create common Node.js project structure",
+    "author": "Jacek Spolnik",
+    "keywords": [
+        "project",
+        "structure",
+        "app"
+    ],
+    "repository": "https://github.com/spolnik/create_node_project",
+    "license": "Apache 2.0"
+}
