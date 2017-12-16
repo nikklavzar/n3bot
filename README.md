@@ -1,5 +1,5 @@
-# n3bot v0.3.2 alpha
-Last update: 10/12/2017, 15:50 CET
+# n3bot v1.0.0 (in development)
+Last update: 16/12/2017, 23:20 CET
 
 Discord cryptocurrency information &amp; analysis bot.  
 This is a very early version in development, and everything might not work as intended.  
@@ -8,9 +8,7 @@ Blame [CoinMarketCap](https://coinmarketcap.com/api/) if something breaks.
 
 Dependencies
 ```
-npm install discord.io (no longer supported, use version below)
-npm install woor/discord.io#gateway_v6
-npm install node-coinmarketcap
+npm install discord.js
 ```
 
 Configuration
@@ -45,8 +43,6 @@ LTC: LRqe2mMhScnLNfkWpHNXanhL6NYr4vYjSc
 ```  
 Life made easier by  
 
-* [discord.io](https://github.com/izy521/discord.io) ([v6 gateway fork](https://github.com/woor/discord.io#gateway-v6) by @Woor), by @izy521
-
-* [node-coinmarketcap](https://github.com/Aex12/node-coinmarketcap), by @Aex12  
+* [discord.js](https://discord.js.org/), by @hydrabolt  
 
 I'd appreciate if you tag me when copying my work. :)
