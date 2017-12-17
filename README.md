@@ -22,7 +22,6 @@ Cryptocurrency
 ;top # - check top # coins' price
 ;coin [ticker] - compressed info about a coin
 ;price [ticker] - check price of a coin
-;mcap [ticker] - check market cap of a coin
 ;convert [amount] [from] [to] - converts amount of first coin to another coin
 ;chart [ticker] [arguments] - view coin's chart (Soon™)
 ```
