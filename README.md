@@ -1,4 +1,4 @@
-# n3bot v1.0.0  
+# n3bot v1.0  
 Last update: 17/12/2017, 20:30 CET
 
 Discord cryptocurrency information &amp; bot. *Still under development*.   
