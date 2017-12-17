@@ -43,4 +43,3 @@ Life made easier by
 
 * [discord.js](https://discord.js.org/), by @hydrabolt  
 
-I'd appreciate if you tag me when copying my work. :)
