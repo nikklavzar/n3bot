@@ -4,12 +4,12 @@ Last update: 17/12/2017, 11:20 CET
 Discord cryptocurrency information &amp; bot. *Still under development*.   
 **The bot is now hosted on a VPS. [Invite link](https://discordapp.com/oauth2/authorize?client_id=388025818720501760&scope=bot&permissions=211968)**.
 
-Dependencies (only if hosting on your own)
+Dependencies (*only if hosting on your own*)
 ```
 npm install discord.js
 ```
 
-Configuration (only if hosting on your own)
+Configuration (*only if hosting on your own*)
 - Open *auth.json* and replace **token** with your Discord app's token found [here](https://discordapp.com/developers/applications/me).  
 
 List of commands
