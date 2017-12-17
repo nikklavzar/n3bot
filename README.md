@@ -29,9 +29,9 @@ Cryptocurrency
 ```
   
 Functionality being added  
-- [X] basic functionality (1/12/2017)
-- [X] rich embeds (7/12/2017)
-- [X] conversions (3/12/2017)
+- [X] basic functionality 
+- [X] rich embeds 
+- [X] conversions 
 - [ ] charts
 - [ ] fixing bugs & making new ones
 
