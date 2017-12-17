@@ -15,6 +15,7 @@ Configuration
 List of commands
 ```
 General
+;help - view list of commands
 ;prefix [character] - set your preferred command prefix
 
 Cryptocurrency
