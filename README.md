@@ -1,5 +1,5 @@
 # n3bot v1.0.0 (in development)
-Last update: 16/12/2017, 23:20 CET
+Last update: 17/12/2017, 11:20 CET
 
 Discord cryptocurrency information &amp; analysis bot.  
 This is a very early version in development, and everything might not work as intended.  
