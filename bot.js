@@ -14,16 +14,23 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  	if ( msg.content.substring(0, 1 ) == prefix ) {
+  	if ( msg.content.substring(0, 1) == prefix ) {
         var args = msg.content.substring(1).split(' ');
         var cmd = args[0];
        
         args = args.splice(1);
         switch(cmd) {
+
+            case 'help':
+
+                msg.channel.send('**List of commands**\n```help - display list of commands\nprefix [prefix] - change prefix\nprice [coin] - display current price\ntop [#] - display top # coins\ncoin [coin] - display coin\'s info\nconvert [#] [coin1] [coin2] - convert # of coin1 to coin2```');
+
+            break;
+
         	case 'prefix':
 
                 if( args[0] == undefined || args[0].length != 1 ) {
-                    msg.channel.send( `Usage: ${prefix} \`prefix []\`.` );
+                    msg.channel.send( `Usage: \`${prefix}prefix []\`.` );
 
                 } else {
                     prefix = args[0];
