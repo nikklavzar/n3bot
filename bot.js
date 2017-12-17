@@ -36,7 +36,7 @@ client.on('message', msg => {
 	                cmc.get( args[0], coin => {
 	                	if(coin) {
 	                		var price_usd = coin['price_usd'];
-	                		msg.channel.send( `${coin['symbol']} price: ${price_usd}` );
+	                		msg.channel.send( `${coin['symbol']} price: $${price_usd}` );
 	                	} else {
 	                		msg.channel.send( 'Not found.' );
 	                	}
@@ -79,58 +79,60 @@ client.on('message', msg => {
 
             if(args[0]) {
 
-            	var price_eth;
-        		cmc.get('eth', ethereum => {
-        			price_eth = ethereum['price_btc'];
-        		});
+                cmc.get('eth', ethereum => {
+                var price_eth_btc = ethereum['price_btc'];
 
             	cmc.get(args[0], coin => {
-            		if(coin) {
-	            		var name = coin['name'];
-	            		var rank = coin['rank'];
-	            		var price_usd = `$${coin['price_usd']}`;
-	            		var price_btc = `${coin['price_btc']} BTC`;
-	        			price_eth = `${Math.round(coin['price_btc'] / price_eth * 100000000) / 100000000} ETH`;
-	            		var volume = `$${numberFormat(coin['24h_volume_usd'])}`;
-	            		var m_cap = `$${numberFormat(coin['market_cap_usd'])}`;
-	            		var avail_supply = numberFormat(coin['available_supply']);
-	            		var total_supply = numberFormat(coin['total_supply']);
-	            		var max_supply = numberFormat(coin['max_supply']);
-	            		var change_1h = `${coin['percent_change_1h']}%`;
-	            		var change_24h = `${coin['percent_change_24h']}%`;
-	            		var change_7d = `${coin['percent_change_7d']}%`;
 
-	            		if(max_supply == null || max_supply == 0) {
-	                        max_supply = '--';
-	                    }
+                    if(coin) {
+                        var name = coin['name'];
+                        var rank = coin['rank'];
+                        var price_usd = `$${coin['price_usd']}`;
+                        var price_btc = `${coin['price_btc']} BTC`;
+                        var price_eth = `${Math.round(coin['price_btc'] / price_eth_btc * 100000000) / 100000000} ETH`;
+                        var volume = `$${numberFormat(coin['24h_volume_usd'])}`;
+                        var m_cap = `$${numberFormat(coin['market_cap_usd'])}`;
+                        var avail_supply = numberFormat(coin['available_supply']);
+                        var total_supply = numberFormat(coin['total_supply']);
+                        var max_supply = numberFormat(coin['max_supply']);
+                        var change_1h = `${coin['percent_change_1h']}%`;
+                        var change_24h = `${coin['percent_change_24h']}%`;
+                        var change_7d = `${coin['percent_change_7d']}%`;
 
-	                    var chunk = '**Rank**: ' + rank + '\n\n**Price USD**: ' + price_usd + '\n**Price BTC**: ' + price_btc + '\n**Price ETH**: ' + price_eth + '\n\n**Volume 24h**: ' + volume + '\n**Market Cap**: ' + m_cap + '\n**Available Supply**: ' + avail_supply + '\n**Total Supply**: ' + total_supply + '\n**Maximum Supply**: ' + max_supply + '\n\n**Change 1h**: ' + change_1h + '\n**Change 24h**: ' + change_24h + '\n**Change 7d**: ' + change_7d;
+                        if(max_supply == null || max_supply == 0) {
+                            max_supply = '--';
+                        }
 
-	                    msg.channel.send({
-		                	embed: {
-		                		color: 3447003,
-		                		thumbnail: {
-		                			url: `https://files.coinmarketcap.com/static/img/coins/32x32/${coin['id']}.png`
-		                		},
-		                		fields: [
-		                			{
-		                				name: coin['name'],
-		                				value: chunk,
-		                				inline: true
-		                			},
-		                		],
-		                		footer: {
-		                			text: `Last updated: ${timeConverter(coin['last_updated'])}`
-		                		}
-		                	},
-	                	});
-                	} else {
-                		msg.channel.send('Not found.');
-                	}
-            	});
-            } else {
-            	msg.channel.send('Undefined.');
-            }
+                        var chunk = `**Rank**: ${rank} \n\n**Price USD**: ${price_usd} \n**Price BTC**: ${price_btc} \n**Price ETH**: ${price_eth} \n\n**Volume 24h**: ${volume} \n**Market Cap**: ${m_cap} \n**Available Supply**: ${avail_supply} \n**Total Supply**: ${total_supply} \n**Maximum Supply**: ${max_supply} \n\n**Change 1h**: ${change_1h} \n**Change 24h**: ${change_24h} \n**Change 7d**: ${change_7d}`;
+
+                        msg.channel.send({
+                            embed: {
+                                color: 3447003,
+                                thumbnail: {
+                                    url: `https://files.coinmarketcap.com/static/img/coins/32x32/${coin['id']}.png`
+                                },
+                                fields: [
+                                    {
+                                        name: coin['name'],
+                                        value: chunk,
+                                        inline: true
+                                    },
+                                ],
+                                footer: {
+                                    text: `Last updated: ${timeConverter(coin['last_updated'])} GMT+2`
+                                }
+                            },
+                        });
+
+                        } else {
+                            msg.channel.send('Not found.');
+                        }
+                    });
+                });
+
+                } else {
+                	msg.channel.send('Undefined.');
+                }
 
             break;
 
