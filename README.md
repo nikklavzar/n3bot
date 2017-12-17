@@ -1,5 +1,5 @@
 # n3bot v1.0.0  
-Last update: 17/12/2017, 11:20 CET
+Last update: 17/12/2017, 20:30 CET
 
 Discord cryptocurrency information &amp; bot. *Still under development*.   
 **The bot is now hosted on a VPS. [Invite link](https://discordapp.com/oauth2/authorize?client_id=388025818720501760&scope=bot&permissions=211968)**.
