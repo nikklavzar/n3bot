@@ -1,5 +1,7 @@
-const discord = require("discord.js");
-const coinmarketcap = require('./coinmarketcap-fetch.js');
+// credits: github.com/n3onis
+
+const discord = require("discord.js"); // thanks @hydrabolt
+const coinmarketcap = require('./coinmarketcap-fetch.js'); // github.com/n3onis/coinmarketcap-fetch
 const auth = require('./auth.json');
 
 const client = new discord.Client();
