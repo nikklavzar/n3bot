@@ -176,6 +176,39 @@ client.on('message', msg => {
             } else {
             	msg.channel.send('Undefined.');
             }
+
+            break;
+
+            case 'global':
+                cmc.getglobal( data => {
+                    var total_market_cap = data['total_market_cap_usd'];
+                    var total_24h_volume_usd = data['total_24h_volume_usd'];
+                    var bitcoin_percentage_of_market_cap = data['bitcoin_percentage_of_market_cap'];
+                    var active_currencies = data['active_currencies'];
+                    var active_assets = data['active_assets'];
+                    var active_markets = data['active_markets'];
+                    var last_updated = data['last_updated'];
+
+                    var chunk = `**Total market cap**: $${numberFormat(total_market_cap)} \n\n**Total 24h volume**: $${total_24h_volume_usd} \n**Bitcoin dominance**: ${bitcoin_percentage_of_market_cap}% \n**Active currencies**: ${active_currencies} \n**Active assets**: ${active_assets} \n**Active markets**: ${active_markets}`;
+
+                    msg.channel.send({
+                        embed: {
+                            color: 3447003,
+                            fields: [
+                                {
+                                    name: 'Global market',
+                                    value: chunk,
+                                    inline: true
+                                },
+                            ],
+                            footer: {
+                                text: `Last updated: ${timeConverter(last_updated)} GMT+2`
+                            }
+                        }
+                    });
+                });
+            break;
+
 		}
 	}
 });

@@ -10,6 +10,22 @@ class coinmarketcap {
 	constructor() {
 		this.convert = 'EUR'; // check 'https://coinmarketcap.com/api/' for all possible currencies
 		this.apiurl = `http://api.coinmarketcap.com/v1/ticker/?convert=${this.convert}`;
+		this.apiurl_global = `http://api.coinmarketcap.com/v1/global/?convert=${this.convert}`;
+	}
+
+	_getjsonglobal ( url, callback ) {
+		request( this.apiurl_global+url, function( error, response, body ) {
+			if( error ) { 
+				callback( false );
+				return this;
+			}
+			if( response && response.statusCode == 200 ) {
+				callback( JSON.parse( body ) );
+			} else {
+				callback( false );
+				return this;
+			}
+		});
 	}
 
 	// retrieve our json api
@@ -47,6 +63,15 @@ class coinmarketcap {
 		}
 	}
 
+	_global ( callback ) {
+		if( callback ) {
+			this._getjsonglobal( '', callback );
+			return this;
+		} else {
+			return false;
+		}
+	}
+
 	// get single coin's data
 	get( symbol, callback ) {
 		this._coinlist( coins => {
@@ -70,6 +95,13 @@ class coinmarketcap {
 	// cmc.getall(data => {
 	// 		console.log(data[0]['price_usd']);
 	// });
+
+	getglobal ( callback ) {
+		this._global(data => {
+			callback( data );
+		}); 
+	}
+
 }
 
 module.exports = coinmarketcap;
