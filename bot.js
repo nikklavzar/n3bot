@@ -189,7 +189,7 @@ client.on('message', msg => {
                     var active_markets = data['active_markets'];
                     var last_updated = data['last_updated'];
 
-                    var chunk = `**Total market cap**: $${numberFormat(total_market_cap)} \n\n**Total 24h volume**: $${total_24h_volume_usd} \n**Bitcoin dominance**: ${bitcoin_percentage_of_market_cap}% \n**Active currencies**: ${active_currencies} \n**Active assets**: ${active_assets} \n**Active markets**: ${active_markets}`;
+                    var chunk = `**Total market cap**: $${numberFormat(total_market_cap)} \n\n**Total 24h volume**: $${numberFormat(total_24h_volume_usd)} \n**Bitcoin dominance**: ${bitcoin_percentage_of_market_cap}% \n**Active currencies**: ${active_currencies} \n**Active assets**: ${active_assets} \n**Active markets**: ${active_markets}`;
 
                     msg.channel.send({
                         embed: {
