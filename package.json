@@ -1,0 +1,29 @@
+{
+  "name": "n3bot",
+  "version": "1.0.0",
+  "description": "Discord bot for retrieving data from CoinMarketCap's API",
+  "main": "bot.js",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/n3onis/n3bot"
+  },
+  "keywords": [
+  	"discord",
+  	"bot",
+  	"coinmarketcap",
+  	"cryptocurrency",
+  	"crypto",
+  	"coin",
+  	"api"
+  ],
+  "author": "n3onis",
+  "license": "MIT"
+}
