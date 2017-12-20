@@ -23,7 +23,7 @@ client.on('message', msg => {
 
             case 'help':
 
-                msg.channel.send('**List of commands**\n```help - display list of commands\nprefix [prefix] - change prefix\nprice [coin] - display current price\ntop [#] - display top # coins\ncoin [coin] - display coin\'s info\nconvert [#] [coin1] [coin2] - convert # of coin1 to coin2```');
+                msg.channel.send('**List of commands**\n```help - display list of commands\nprefix [prefix] - change prefix\nprice [coin] - display current price\ntop [#] - display top # coins\ncoin [coin] - display coin\'s info\nconvert [#] [coin1] [coin2] - convert # of coin1 to coin2\nglobal - view global market info```');
 
             break;
 
