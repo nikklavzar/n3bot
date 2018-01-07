@@ -29,13 +29,14 @@ client.on('message', msg => {
 
         	case 'prefix':
 
-                if( args[0] == undefined || args[0].length != 1 ) {
-                    msg.channel.send( `Usage: \`${prefix}prefix []\`.` );
+                // if( args[0] == undefined || args[0].length != 1 ) {
+                //     msg.channel.send( `Usage: \`${prefix}prefix []\`.` );
 
-                } else {
-                    prefix = args[0];
-                    msg.channel.send( `Prefix changed to \`${prefix}\`.` );
-                }
+                // } else {
+                //     prefix = args[0];
+                //     msg.channel.send( `Prefix changed to \`${prefix}\`.` );
+                // }
+                msg.channel.send( `Command temporarily disabled due to a bug.` );
 
             break;
 
