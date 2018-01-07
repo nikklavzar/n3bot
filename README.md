@@ -19,7 +19,7 @@ General
 ;prefix [character] - set your preferred command prefix
 
 Cryptocurrency
-;top # - check top # coins' price
+;top # - check top # coins' price (max 38)
 ;coin [ticker] - compressed info about a coin
 ;price [ticker] - check price of a coin
 ;convert [amount] [from] [to] - converts amount of first coin to another coin
