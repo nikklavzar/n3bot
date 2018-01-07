@@ -17,7 +17,7 @@ client.on('message', msg => {
   	if ( msg.content.substring(0, 1) == prefix ) {
         var args = msg.content.substring(1).split(' ');
         var cmd = args[0];
-        console.log(`Requested '${cmd}'.`);
+        console.log(`Requested '${cmd}' (${client.channel.id}).`);
        
         args = args.splice(1);
         switch(cmd) {
