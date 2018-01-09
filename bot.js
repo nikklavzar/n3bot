@@ -67,7 +67,7 @@ client.on('message', msg => {
                 var chunk = '';
                 cmc.getall(coins => {
                 	for( var i = 0; i < args[0]; i++ ) {
-                		chunk += `${i+1}. **${coins[i]['name']}** - $${coins[i]['price_usd']}\n`;
+                		chunk += `${i+1}. **${coins[i]['name']}** - $${coins[i]['price_usd']}    **Δ** *${coins[i]['percent_change_24h']}%*\n`;
                 	}
 
                 	msg.channel.send({
