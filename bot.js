@@ -11,6 +11,7 @@ var prefix = ';';
 
 client.on('ready', () => {
   console.log( `Logged in as ${client.user.tag}!` );
+  setInterval(updateStatus, 120); // update status every 2 minutes
 });
 
 client.on('message', msg => {
@@ -216,6 +217,14 @@ client.on('message', msg => {
 });
 
 client.login(auth.token);
+
+function updateStatus() {
+    cmc.getglobal( data => {
+        var cap = data['total_market_cap_usd'];
+        client.user.setGame(`Market cap: $${numberFormat(cap/1000000000)}B`);
+    });
+
+}
 
 function numberFormat(x) {
     x = Math.round(x * 100) / 100;
