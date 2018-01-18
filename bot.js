@@ -221,7 +221,7 @@ client.login(auth.token);
 function updateStatus() {
     cmc.getglobal( data => {
         var cap = data['total_market_cap_usd'];
-        client.user.setGame(`M. cap: $${numberFormat(cap/1000000000)}B`);
+        client.user.setGame(`Mkt. cap: $${numberFormat(cap/1000000000)}B`);
     });
 
 }
