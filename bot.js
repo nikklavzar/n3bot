@@ -11,7 +11,7 @@ var prefix = ';';
 
 client.on('ready', () => {
   console.log( `Logged in as ${client.user.tag}!` );
-  setInterval(updateStatus, 120); // update status every 2 minutes
+  setInterval(updateStatus, 120000); // update status every 2 minutes
 });
 
 client.on('message', msg => {
