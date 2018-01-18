@@ -205,7 +205,7 @@ client.on('message', msg => {
                                 },
                             ],
                             footer: {
-                                text: `Last updated: ${timeConverter(last_updated)} GMT+2`
+                                text: `Last updated: ${timeConverter(last_updated)}`
                             }
                         }
                     });
