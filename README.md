@@ -16,7 +16,7 @@ List of commands
 ```
 General
 ;help - view list of commands
-;prefix [character] - set your preferred command prefix
+;prefix [character] - set your preferred command prefix (not functional)
 
 Cryptocurrency
 ;top # - check top # coins' price (max 38)
@@ -24,15 +24,13 @@ Cryptocurrency
 ;price [ticker] - check price of a coin
 ;convert [amount] [from] [to] - converts amount of first coin to another coin
 ;global - print global market info
-;chart [ticker] [arguments] - view coin's chart (Soon™)
 ```
   
 Functionality being added  
 - [X] basic functionality 
 - [X] rich embeds 
 - [X] conversions 
-- [ ] charts
-- [ ] fixing bugs & making new ones
+- [X] fixing bugs & making new ones
 
 If you would like to thank me for saving you ~0.0152 seconds by not having to open your browser   
 ```
