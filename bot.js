@@ -45,9 +45,9 @@ client.on('message', msg => {
             case 'price':
 
             	if(args[0]) {
-	                cmc.get( args[0], coin => {
+	                cmc.get( args[0], 'USD', coin => {
 	                	if(coin) {
-	                		var price_usd = coin['price_usd'];
+	                		var price_usd = coin['quotes']['USD']['price'];
 	                		msg.channel.send( `${coin['symbol']} price: $${price_usd}` );
 	                	} else {
 	                		msg.channel.send( 'Not found.' );
@@ -66,9 +66,9 @@ client.on('message', msg => {
                 }
                 
                 var chunk = '';
-                cmc.getall(coins => {
+                cmc.getall( 'USD', coins => {
                 	for( var i = 0; i < args[0]; i++ ) {
-                		chunk += `${i+1}. **${coins[i]['name']}** - $${coins[i]['price_usd']}    **Δ** *${coins[i]['percent_change_24h']}%*\n`;
+                		chunk += `${i+1}. **${coins[i]['name']}** - $${coins[i]['quotes']['USD']['price']}    **Δ** *${coins[i]['quotes']['USD']['percent_change_24h']}%*\n`;
                 	}
 
                 	msg.channel.send({
@@ -91,25 +91,25 @@ client.on('message', msg => {
 
             if(args[0]) {
 
-                cmc.get('eth', ethereum => {
-                var price_eth_btc = ethereum['price_btc'];
+                cmc.get('eth', 'BTC', ethereum => {
+                var price_eth_btc = ethereum['quotes']['BTC']['price'];
 
-            	cmc.get(args[0], coin => {
+            	cmc.get(args[0], 'BTC', coin => {
 
                     if(coin) {
                         var name = coin['name'];
                         var rank = coin['rank'];
-                        var price_usd = `$${coin['price_usd']}`;
-                        var price_btc = `${coin['price_btc']} BTC`;
-                        var price_eth = `${Math.round(coin['price_btc'] / price_eth_btc * 100000000) / 100000000} ETH`;
-                        var volume = `$${numberFormat(coin['24h_volume_usd'])}`;
-                        var m_cap = `$${numberFormat(coin['market_cap_usd'])}`;
-                        var avail_supply = numberFormat(coin['available_supply']);
+                        var price_usd = `$${coin['quotes']['USD']['price']}`;
+                        var price_btc = `${coin['quotes']['BTC']['price']} BTC`;
+                        var price_eth = `${Math.round(coin['quotes']['BTC']['price'] / price_eth_btc * 100000000) / 100000000} ETH`;
+                        var volume = `$${numberFormat(coin['quotes']['USD']['volume_24h'])}`;
+                        var m_cap = `$${numberFormat(coin['quotes']['USD']['market_cap'])}`;
+                        var avail_supply = numberFormat(coin['circulating_supply']);
                         var total_supply = numberFormat(coin['total_supply']);
                         var max_supply = numberFormat(coin['max_supply']);
-                        var change_1h = `${coin['percent_change_1h']}%`;
-                        var change_24h = `${coin['percent_change_24h']}%`;
-                        var change_7d = `${coin['percent_change_7d']}%`;
+                        var change_1h = `${coin['quotes']['USD']['percent_change_1h']}%`;
+                        var change_24h = `${coin['quotes']['USD']['percent_change_24h']}%`;
+                        var change_7d = `${coin['quotes']['USD']['percent_change_7d']}%`;
 
                         if(max_supply == null || max_supply == 0) {
                             max_supply = '--';
@@ -131,7 +131,7 @@ client.on('message', msg => {
                                     },
                                 ],
                                 footer: {
-                                    text: `Last updated: ${timeConverter(coin['last_updated'])} GMT+2`
+                                    text: `Last updated: ${timeConverter(coin['last_updated'])}`
                                 }
                             },
                         });
@@ -154,14 +154,14 @@ client.on('message', msg => {
 
             	var from, to, from_symbol, to_symbol;
 
-            	cmc.get(args[1], _from => {
+            	cmc.get(args[1], 'BTC', _from => {
             		if(_from) {
             			from_symbol = _from['symbol'];
-            			from = _from['price_btc'];
-            			cmc.get(args[2], _to => {
+            			from = _from['quotes']['BTC']['price'];
+            			cmc.get(args[2], 'BTC', _to => {
 		            		if(_to) {
 		            			to_symbol = _to['symbol'];
-		            			to = _to['price_btc'];
+		            			to = _to['quotes']['BTC']['price_btc'];
 		            		} else {
 		            			msg.channel.send('Not found.');
 		            		}
@@ -184,15 +184,14 @@ client.on('message', msg => {
 
             case 'global':
                 cmc.getglobal( data => {
-                    var total_market_cap = data['total_market_cap_usd'];
-                    var total_24h_volume_usd = data['total_24h_volume_usd'];
+                    var total_market_cap = data['quotes']['USD']['total_market_cap'];
+                    var total_24h_volume_usd = data['quotes']['USD']['total_volume_24h'];
                     var bitcoin_percentage_of_market_cap = data['bitcoin_percentage_of_market_cap'];
-                    var active_currencies = data['active_currencies'];
-                    var active_assets = data['active_assets'];
+                    var active_currencies = data['active_cryptocurrencies'];
                     var active_markets = data['active_markets'];
                     var last_updated = data['last_updated'];
 
-                    var chunk = `**Total market cap**: $${numberFormat(total_market_cap)} \n\n**Total 24h volume**: $${numberFormat(total_24h_volume_usd)} \n**Bitcoin dominance**: ${bitcoin_percentage_of_market_cap}% \n**Active currencies**: ${active_currencies} \n**Active assets**: ${active_assets} \n**Active markets**: ${active_markets}`;
+                    var chunk = `**Total market cap**: $${numberFormat(total_market_cap)} \n\n**Total 24h volume**: $${numberFormat(total_24h_volume_usd)} \n**Bitcoin dominance**: ${bitcoin_percentage_of_market_cap}% \n**Active currencies**: ${active_currencies} \n**Active markets**: ${active_markets}`;
 
                     msg.channel.send({
                         embed: {
@@ -240,6 +239,6 @@ function timeConverter(UNIX_timestamp){
   var hour = a.getHours();
   var min = a.getMinutes();
   var sec = a.getSeconds();
-  var time = date + ' ' + month + ' ' + year + ', ' + hour + ':' + min + ':' + sec ;
+  var time = date + ' ' + month + ' ' + year + ', ' + hour + ':' + min + ':' + sec + ' CE(S)T';
   return time;
 }

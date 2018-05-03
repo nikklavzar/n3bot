@@ -8,9 +8,8 @@ class coinmarketcap {
 
 	// basic api
 	constructor() {
-		this.convert = 'EUR'; // check 'https://coinmarketcap.com/api/' for all possible currencies
-		this.apiurl = `http://api.coinmarketcap.com/v1/ticker/?convert=${this.convert}`;
-		this.apiurl_global = `http://api.coinmarketcap.com/v1/global/?convert=${this.convert}`;
+		this.apiurl = `http://api.coinmarketcap.com/v2/ticker/?convert=`;
+		this.apiurl_global = `http://api.coinmarketcap.com/v2/global/?convert=BTC`;
 	}
 
 	_getjsonglobal ( url, callback ) {
@@ -54,9 +53,9 @@ class coinmarketcap {
 	}
 
 	// get full coin list from coinmarketcap
-	_coinlist( callback ) {
+	_coinlist( convert, callback ) {
 		if( callback ) {
-			this._getjson( '&limit=0', callback );
+			this._getjson( convert + '&limit=0', callback );
 			return this;
 		} else {
 			return false;
@@ -73,8 +72,8 @@ class coinmarketcap {
 	}
 
 	// get single coin's data
-	get( symbol, callback ) {
-		this._coinlist( coins => {
+	get( symbol, convert, callback ) {
+		this._coinlist( convert, coins => {
 			var found = this._find( symbol, coins );
 			callback( found[0] );
 		})
@@ -85,8 +84,8 @@ class coinmarketcap {
 	// 		console.log(data['price_usd']);
 	// });
 
-	getall( callback ) {
-		this._coinlist(coins => {
+	getall( convert, callback ) {
+		this._coinlist( convert, coins => {
 			callback( coins );
 		}); 
 	}
