@@ -1,4 +1,4 @@
-#### This is just the bot's shell. Commands are yet to be added due to API change.
+#### This is just the bot's framework. Commands are yet to be added due to API change.
 
 Run `npm install` inside the source folder to install dependencies. <br>
 
