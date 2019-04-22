@@ -9,4 +9,8 @@ const cmc_api = require("cmc-info");
 let cmc = new cmc_api("API_KEY");
 ```
 
-Run with `node bot.js`.
+Run with `node bot.js`. <br><br>
+
+Links:
+> Discord API: [discord.js](https://github.com/discordjs/discord.js)<br>
+> Coinmarketcap API: [cmc-info](https://github.com/n3onis/cmc-info)
