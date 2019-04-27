@@ -6,6 +6,8 @@ Run `npm install` inside the source folder to install dependencies. <br>
 
 Set your Discord bot token in [auth.json](auth.json). <br>
 
+![token](http://51.158.115.178/images/readme_token.png)
+
 Set your Coinmarketcap API key in `cmc-info`'s constructor call. <br>
 Example (from [bot.js](bot.js)):
 ```
