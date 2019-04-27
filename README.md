@@ -1,6 +1,6 @@
 #### This is just the bot's framework. Commands are yet to be added due to API change.
 
-(Node.js is required)[https://nodejs.org/en/download/package-manager/].
+[Node.js is required](https://nodejs.org/en/download/package-manager/).
 
 Run `npm install` inside the source folder to install dependencies. <br>
 
