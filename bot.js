@@ -36,11 +36,11 @@ client.on('message', msg => {
                             msg.channel.send(`${args[0].toUpperCase()}: $${numberFormat(data)}`);
                         })
                         .catch(error => {
-                            msg.channel.send(`API Error.`);
+                            msg.channel.send(`Error: not found.`);
                             console.error(error);
                         });
                 } else {
-                    msg.channel.send("Undefined.");
+                    msg.channel.send("Error: Undefined symbol.");
                 }
                 break;
 
@@ -51,13 +51,13 @@ client.on('message', msg => {
                             let id = data['id'];
                             let name = data['name'];
                             let rank = data['cmc_rank'];
-                            let supply = numberFormat(data['circulating_supply']);
-                            let price = numberFormat(data['quote']['USD']['price']);
-                            let volume_24h = numberFormat(data['quote']['USD']['volume_24h']);
-                            let percent_change_1h = numberFormat(data['quote']['USD']['percent_change_1h']);
-                            let percent_change_24h = numberFormat(data['quote']['USD']['percent_change_24h']);
-                            let percent_change_7d = numberFormat(data['quote']['USD']['percent_change_7d']);
-                            let market_cap = numberFormat(data['quote']['USD']['market_cap']);
+                            let supply = numberFormat(data['circulating_supply'], 2);
+                            let price = numberFormat(data['quote']['USD']['price'], 4);
+                            let volume_24h = numberFormat(data['quote']['USD']['volume_24h'], 2);
+                            let percent_change_1h = numberFormat(data['quote']['USD']['percent_change_1h'], 2);
+                            let percent_change_24h = numberFormat(data['quote']['USD']['percent_change_24h'], 2);
+                            let percent_change_7d = numberFormat(data['quote']['USD']['percent_change_7d'], 2);
+                            let market_cap = numberFormat(data['quote']['USD']['market_cap'], 2);
                             let last_updated = data['last_updated'];
                             let chunk = `**Rank**: ${rank} \n\n**Circulating supply**: ${supply} \n**Price**: $${price} \n**Volume 24H**: ${volume_24h} \n**Change 1H**: ${percent_change_1h}% \n**Change 24H**: ${percent_change_24h}% \n**Change 7D**: ${percent_change_7d}% \n\n**Market cap**: $${market_cap}`;
                             msg.channel.send({
@@ -80,11 +80,11 @@ client.on('message', msg => {
                             });
                         })
                         .catch(error => {
-                            msg.channel.send(`API Error.`);
+                            msg.channel.send(`Error: not found.`);
                             console.error(error);
                         });
                 } else {
-                    msg.channel.send("Undefined.");
+                    msg.channel.send("Error: Undefined symbol.");
                 }
                 break;
 
@@ -106,7 +106,7 @@ function updateStatus() {
         });
 }
 
-function numberFormat(x) {
-    x = Math.round(x * 100) / 100;
+function numberFormat(x, precision) {
+    x = Math.round(x * Math.pow(10, precision)) / Math.pow(10, precision);
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
