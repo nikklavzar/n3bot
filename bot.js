@@ -33,7 +33,7 @@ client.on('message', msg => {
                 if(args[0]) {
                     cmc.requestCoin(args[0], 'price')
                         .then(data => {
-                            msg.channel.send(`${args[0].toUpperCase()}: $${numberFormat(data)}`);
+                            msg.channel.send(`${args[0].toUpperCase()}: $${numberFormat(data, 4)}`);
                         })
                         .catch(error => {
                             msg.channel.send(`Error: not found.`);
