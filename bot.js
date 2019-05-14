@@ -28,9 +28,39 @@ client.on('message', msg => {
        
         args = args.splice(1);
         switch(cmd) {
+            case 'global':
+                cmc.requestGlobalMetrics()
+                    .then(data => {
+                        let btc_dominance = data['btc_dominance'];
+                        let eth_dominance = data['eth_dominance'];
+                        let market_cap = data['quote']['USD']['total_market_cap'];
+                        let volume_24h = data['quote']['USD']['total_volume_24h'];
+                        let last_updated = data['quote']['USD']['last_updated'];
+                        let chunk = `**BTC dominance**: ${btc_dominance} \n**ETH dominance**: ${eth_dominance} \n**Total market cap**: ${market_cap} \n**Total volume 24H**: ${volume_24h} \n`;
+                        msg.channel.send({
+                            embed: {
+                                color: 3447003,
+                                fields: [
+                                    {
+                                        name: "Global metrics",
+                                        value: chunk,
+                                        inline: true
+                                    },
+                                ],
+                                footer: {
+                                    text: `Last updated: ${last_updated}`
+                                }
+                            },
+                        });
+                    })
+                    .catch(error => {
+                        msg.channel.send(`Error: API Error.`);
+                        console.error(error);
+                    });
+                break;
 
             case 'price':
-                if(args[0]) {
+                if (args[0]) {
                     cmc.requestCoinBySymbol(args[0], 'price')
                         .then(data => {
                             msg.channel.send(`${args[0].toUpperCase()}: $${numberFormat(data, 4)}`);
