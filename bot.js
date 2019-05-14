@@ -59,7 +59,7 @@ client.on('message', msg => {
                             let percent_change_7d = numberFormat(data['quote']['USD']['percent_change_7d'], 2);
                             let market_cap = numberFormat(data['quote']['USD']['market_cap'], 2);
                             let last_updated = data['last_updated'];
-                            let chunk = `**Rank**: ${rank} \n\n**Circulating supply**: ${supply} \n**Price**: $${price} \n**Volume 24H**: $${volume_24h} \n**Change 1H**: ${percent_change_1h}% \n**Change 24H**: ${percent_change_24h}% \n**Change 7D**: ${percent_change_7d}% \n\n**Market cap**: $${market_cap}`;
+                            let chunk = `**Rank**: ${rank} \n\n**Volume 24H**: $${volume_24h} \n**Change 1H**: ${percent_change_1h}% \n**Change 24H**: ${percent_change_24h}% \n**Change 7D**: ${percent_change_7d}% \n\n**Price**: $${price} \n**Circulating supply**: ${supply} \n**Market cap**: $${market_cap}`;
                             msg.channel.send({
                                 embed: {
                                     color: 3447003,
