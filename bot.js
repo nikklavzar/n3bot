@@ -109,5 +109,9 @@ function updateStatus() {
 function numberFormat(x, precision) {
     x = Math.round(x * Math.pow(10, precision)) / Math.pow(10, precision);
     let arr = x.toString().split(".");
-    return arr[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + arr[1];
+    let formatted = arr[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if(arr.length == 2) {
+        formatted += "." + arr[1];
+    }
+    return formatted;
 }
