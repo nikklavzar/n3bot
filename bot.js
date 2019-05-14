@@ -31,7 +31,7 @@ client.on('message', msg => {
 
             case 'price':
                 if(args[0]) {
-                    cmc.requestCoin(args[0], 'price')
+                    cmc.requestCoinBySymbol(args[0], 'price')
                         .then(data => {
                             msg.channel.send(`${args[0].toUpperCase()}: $${numberFormat(data, 4)}`);
                         })
@@ -46,7 +46,7 @@ client.on('message', msg => {
 
             case 'info':
                 if (args[0]) {
-                    cmc.requestCoin(args[0])
+                    cmc.requestCoinBySymbol(args[0])
                         .then(data => {
                             let id = data['id'];
                             let name = data['name'];
@@ -96,7 +96,7 @@ client.login(auth.token);
 
 // Playing Bitcoin: $X,XXX.YY
 function updateStatus() {
-    cmc.requestCoin('BTC', 'price')
+    cmc.requestCoinBySymbol('BTC', 'price')
         .then(data => {
             client.user.setActivity(`Bitcoin: $${numberFormat(data, 2)}`);
         })
