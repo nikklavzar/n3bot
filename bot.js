@@ -31,12 +31,12 @@ client.on('message', msg => {
             case 'global':
                 cmc.requestGlobalMetrics()
                     .then(data => {
-                        let btc_dominance = data['btc_dominance'];
-                        let eth_dominance = data['eth_dominance'];
-                        let market_cap = data['quote']['USD']['total_market_cap'];
-                        let volume_24h = data['quote']['USD']['total_volume_24h'];
+                        let btc_dominance = numberFormat(data['btc_dominance'], 2);
+                        let eth_dominance = numberFormat(data['eth_dominance'], 2);
+                        let market_cap = numberFormat(data['quote']['USD']['total_market_cap'], 2);
+                        let volume_24h = numberFormat(data['quote']['USD']['total_volume_24h'], 2);
                         let last_updated = data['quote']['USD']['last_updated'];
-                        let chunk = `**BTC dominance**: ${btc_dominance} \n**ETH dominance**: ${eth_dominance} \n**Total market cap**: ${market_cap} \n**Total volume 24H**: ${volume_24h} \n`;
+                        let chunk = `**BTC dominance**: ${btc_dominance}% \n**ETH dominance**: ${eth_dominance}% \n**Total market cap**: $${market_cap} \n**Total volume 24H**: $${volume_24h} \n`;
                         msg.channel.send({
                             embed: {
                                 color: 3447003,
