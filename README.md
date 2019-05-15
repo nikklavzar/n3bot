@@ -7,7 +7,7 @@
   
 #### Commands
 
-`;price` `;info` & more coming...
+`;global`, `;price [symbol]`, `;info [symbol]` & more coming...
 
 #### Requirements
 
